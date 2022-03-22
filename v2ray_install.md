@@ -75,6 +75,20 @@ wget https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-re
 bash install-release.sh
 ```
 
+- Compatible with old clients(MD5 authentication)
+Open /etc/systemd/system/v2ray.service, add the following line in the `[Service]` block
+
+```
+Environment="V2RAY_VMESS_AEAD_FORCED=false"
+```
+
+Reload systemd and restart v2ray
+
+```
+systemctl daemon-reload
+systemctl restart v2ray
+```
+
 - Edit config.json in /usr/local/etc/v2ray/config.json
 use the following command to generate UUID
 ```
