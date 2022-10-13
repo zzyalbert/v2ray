@@ -49,6 +49,63 @@ cat << EOF > /usr/local/etc/v2ray/config.json
 }
 EOF
 
+if [[ $type == 'shadowsocks' ]];then
+    cat << EOF > /usr/local/etc/v2ray/config.json
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "/dev/null",
+    "error": "/dev/null"
+  },
+  "inbounds": [
+    {
+      "port": 30303,
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "aes-256-gcm",
+        "password": "ac24f751-77e1-4f8c-b894-7c9b0d3fbba1",
+        "network": "tcp,udp",
+        "level": 0
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "allowed"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "domain": [
+          "google.com",
+          "apple.com",
+          "oppomobile.com"
+        ],
+        "type": "field",
+        "outboundTag": "allowed"
+      },
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "blocked"
+      }
+    ]
+  }
+}
+EOF
+
+fi
+
 echo 'config generated to /usr/local/etc/v2ray/config.json'
 
 # add port to firewall
