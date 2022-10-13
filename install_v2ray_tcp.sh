@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# update kernal for centos 7
+# rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+# rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+# yum --enablerepo=elrepo-kernel install kernel-ml -y
+# grub2-set-default 0 && shutdown -r now
+
+# enable bbr
+# wget https://raw.githubusercontent.com/bannedbook/fanqiang/master/v2ss/server-cfg/sysctl.conf -O -> /etc/sysctl.conf
+# sysctl -p
+
 # install binary
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 echo 'v2ray installed!'
