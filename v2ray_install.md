@@ -52,17 +52,17 @@ yum install -y netcat socat
 
 Generate & Install
 ```
-sudo ~/.acme.sh/acme.sh --register-account -m user@mail.com --force
+sudo ~/.acme.sh/acme.sh --register-account -m zzyalbert@gmail.com --force
 
-sudo ~/.acme.sh/acme.sh --issue -d mydomain.me --standalone -k ec-256 --force
+sudo ~/.acme.sh/acme.sh --issue -d v1.btcfun.top --standalone -k ec-256 --force
 
-sudo ~/.acme.sh/acme.sh --installcert -d mydomain.me --fullchainpath /usr/local/etc/v2ray/v2ray.crt --keypath /usr/local/etc/v2ray/v2ray.key --ecc --force
+sudo ~/.acme.sh/acme.sh --installcert -d v1.btcfun.top --fullchainpath /usr/local/etc/v2ray/v2ray.crt --keypath /usr/local/etc/v2ray/v2ray.key --ecc --force
 
 ```
 
 Update CA Manually
 ```
-sudo ~/.acme.sh/acme.sh --renew -d mydomain.com --force --ecc
+sudo ~/.acme.sh/acme.sh --renew -d v1.btcfun.top --force --ecc
 ```
 
 - Download
