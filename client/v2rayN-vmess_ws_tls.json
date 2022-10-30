@@ -33,7 +33,10 @@
       },
       "streamSettings": {
         "network": "ws",
-        "security": "tls"
+        "security": "tls",
+        "wsSettings": {
+          "path": "/asdfghjkl"
+        }
       }
     }
   ]

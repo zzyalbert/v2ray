@@ -6,24 +6,26 @@
 # yum --enablerepo=elrepo-kernel install kernel-ml -y
 # grub2-set-default 0 && shutdown -r now
 
-# enable bbr
-# wget https://raw.githubusercontent.com/bannedbook/fanqiang/master/v2ss/server-cfg/sysctl.conf -O -> /etc/sysctl.conf
-# sysctl -p
+enable bbr
+wget https://raw.githubusercontent.com/bannedbook/fanqiang/master/v2ss/server-cfg/sysctl.conf -O -> /etc/sysctl.conf
+sysctl -p
 
 # install binary
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 echo 'v2ray installed!'
 
 # generate config file /usr/local/etc/v2ray/config.json
+uid=`uuidgen`
+
 cat << EOF > /usr/local/etc/v2ray/config.json
 {
   "inbounds": [{
-    "port": 25250,
+    "port": 30303,
     "protocol": "vmess",
     "settings": {
       "clients": [
         {
-          "id": "bdb6335c-09cb-44c9-8d75-ccb4b5625af2",
+          "id": "$uid",
           "alterId": 0
         }
       ]
@@ -63,7 +65,7 @@ if [[ $type == 'shadowsocks' ]];then
       "protocol": "shadowsocks",
       "settings": {
         "method": "aes-256-gcm",
-        "password": "ac24f751-77e1-4f8c-b894-7c9b0d3fbba1",
+        "password": "$uid",
         "network": "tcp,udp",
         "level": 0
       }
@@ -109,7 +111,7 @@ fi
 echo 'config generated to /usr/local/etc/v2ray/config.json'
 
 # add port to firewall
-firewall-cmd --zone=public --add-port=9200/tcp --permanent
+firewall-cmd --zone=public --add-port=30303/tcp --permanent
 firewall-cmd --reload
 
 # start v2ray
