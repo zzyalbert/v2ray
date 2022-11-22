@@ -18,7 +18,7 @@ setenforce 0
 yum install -y nginx
 
 # generate config file /etc/nginx/nginx.conf
-cat << EOF > /usr/local/etc/v2ray/config.json
+cat << EOF > /etc/nginx/nginx.conf
 user root;
 worker_processes auto;
 error_log /var/log/nginx/error.log;
@@ -119,13 +119,13 @@ http {
 }
 EOF
 
-# mv resource
-mv crt/* /usr/local/etc/v2ray/
-mv html/* /usr/share/nginx/html/
-
 # install v2ray
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 echo 'v2ray installed!'
+
+# mv resource
+mv crt/* /usr/local/etc/v2ray/
+mv html/* /usr/share/nginx/html/
 
 # generate config file /usr/local/etc/v2ray/config.json
 uid=`uuidgen`

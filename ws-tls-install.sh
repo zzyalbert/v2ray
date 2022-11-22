@@ -10,12 +10,12 @@ firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --reload
 echo 'permit 443 to firewall'
 
-# mv crt
-mv crt/* /usr/local/etc/v2ray/
-
 # install v2ray
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 echo 'v2ray installed!'
+
+# mv crt
+mv crt/* /usr/local/etc/v2ray/
 
 # generate config file /usr/local/etc/v2ray/config.json
 uid=`uuidgen`
