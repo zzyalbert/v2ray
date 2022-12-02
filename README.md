@@ -112,8 +112,8 @@ cat /proc/sys/kernel/random/uuid
 ```
 yum install -y chrony
 timedatectl set-timezone Asia/Shanghai
-systemctl start chrony
 systemctl enable chrony
+systemctl start chrony
 ```
 
 - Close firewall
